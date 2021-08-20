@@ -20,7 +20,7 @@ class AutoScrollViewPager : ViewPager {
     private var mHandler: Handler = Handler(Looper.getMainLooper())
 
     private var scrollPosition = 0
-    private var interval: Long = 0
+    private var interval: Long = 3000
 
     private val runnable = object : Runnable {
 
@@ -40,13 +40,13 @@ class AutoScrollViewPager : ViewPager {
     }
 
 
-    fun startAutoScroll(interval: Long = 5000) {
+    fun startAutoScroll(interval: Long = 3000) {
         this.interval = interval
 
         addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageSelected(position: Int) {
                 // Updating "scroll position" when user scrolls manually
-                scrollPosition = position + 1
+                scrollPosition = position
             }
 
             override fun onPageScrollStateChanged(state: Int) {
