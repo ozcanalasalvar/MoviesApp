@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Movies App</string>
+    <string name="image_domain">https://www.themoviedb.org/t/p/w440_and_h660_face</string>
+    <string name="api_key">6cea5507c1dafd8f492d1d9a552483bc</string>
+</resources>
