@@ -45,7 +45,7 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel>() :
 
 
     fun showError(message: String) {
-        val snack = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+        val snack =  Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         snack.view.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
         snack.show()
     }
