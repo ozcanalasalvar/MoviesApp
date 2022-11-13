@@ -2,32 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"
-    app:startDestination="@id/mainScreenFragment">
+    android:id="@+id/navigation">
 
-    <fragment
-        android:id="@+id/mainScreenFragment"
-        android:name="com.example.moviesapp.ui.main.MainScreenFragment"
-        android:label="MainScreenFragment"
-        tools:layout="@layout/fragment_main_screen">
-        <action
-            android:id="@+id/action_mainScreenFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.example.moviesapp.ui.detail.DetailFragment"
-        android:label="DetailFragment"
-        tools:layout="@layout/fragment_movie_detail">
-
-        <argument
-            android:name="selectedMovie"
-            android:defaultValue="0"
-            app:argType="integer" />
-        <argument
-            android:name="movieUrl"
-            android:defaultValue="null"
-            app:argType="string"
-            app:nullable="true" />
-    </fragment>
 </navigation>

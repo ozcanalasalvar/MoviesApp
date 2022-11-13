@@ -1,0 +1,77 @@
+package com.example.moviesapp.data.source.remote
+
+import com.example.moviesapp.BuildConfig
+import com.example.moviesapp.data.model.detail.MovieDetailModel
+import com.example.moviesapp.data.model.list.MovieDto
+import com.example.moviesapp.data.util.MovieResponse
+import okhttp3.HttpUrl
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+
+
+interface MovieService {
+
+
+    @GET("movie/popular")
+    suspend fun getPopularMovies(
+        @Query(QUERY_PAGE) page: Int,
+        @Query(QUERY_LANGUAGE) language: String
+    ): MovieResponse<List<MovieDto>>
+
+
+    @GET("movie/now_playing")
+    suspend fun getNowPlayingMovies(
+        @Query(QUERY_PAGE) page: Int,
+        @Query(QUERY_LANGUAGE) language: String
+    ): MovieResponse<List<MovieDto>>
+
+    @GET("movie/{id}")
+    suspend fun getMovieDetail(
+        @Path("id") movieId: Int,
+        @Query(QUERY_LANGUAGE) language: String
+    ): MovieDetailModel
+
+
+
+    companion object {
+
+        const val QUERY_API_KEY = "api_key"
+        const val QUERY_PAGE = "page"
+        const val QUERY_LANGUAGE = "language"
+        private const val BASE_URL = "https://api.themoviedb.org/3/"
+
+        fun create(): MovieService {
+            val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(object :Interceptor{
+                    override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
+                        var request: Request = chain.request()
+                        val url: HttpUrl =
+                            request.url.newBuilder().addQueryParameter(QUERY_API_KEY, BuildConfig.API_KEY).build()
+                        request = request.newBuilder().url(url).build()
+                        return chain.proceed(request)
+                    }
+
+                })
+                .addInterceptor(logger)
+                .build()
+
+            return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(MovieService::class.java)
+        }
+    }
+
+
+}

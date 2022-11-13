@@ -1,15 +1,12 @@
-package com.example.moviesapp.data.model.list
+package com.example.moviesapp.data.util
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class MovieResultModel(
-    @Expose
-    @SerializedName("dates")
-    val dates: DatesModel,
+data class MovieResponse<T> (
     @Expose
     @SerializedName("results")
-    val results: List<MovieModel>,
+    val results: T,
     @Expose
     @SerializedName("page")
     val page: Int,
