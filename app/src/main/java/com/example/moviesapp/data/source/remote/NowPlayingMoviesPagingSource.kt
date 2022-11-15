@@ -18,7 +18,6 @@ class NowPlayingMoviesPagingSource(
         val pageIndex = params.key ?: TMDB_STARTING_PAGE_INDEX
         return try {
             val response = service.getNowPlayingMovies(
-                language = "en-US",
                 page = pageIndex
             )
             val movies = response.results
