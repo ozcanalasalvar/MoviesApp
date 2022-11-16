@@ -12,3 +12,5 @@ sealed class Resource<out T> {
         }
     }
 }
+
+fun Resource<*>.isSuccess(): Boolean = this is Resource.Success

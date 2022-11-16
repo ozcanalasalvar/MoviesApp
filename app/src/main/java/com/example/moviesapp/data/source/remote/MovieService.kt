@@ -2,7 +2,7 @@ package com.example.moviesapp.data.source.remote
 
 import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.data.model.cast.CastingResponse
-import com.example.moviesapp.data.model.detail.MovieDetailResponse
+import com.example.moviesapp.data.model.detail.MovieDetailDto
 import com.example.moviesapp.data.model.list.MovieDto
 import com.example.moviesapp.data.util.MovieResponse
 import okhttp3.HttpUrl
@@ -34,7 +34,7 @@ interface MovieService {
     @GET("movie/{id}")
     suspend fun getMovieDetail(
         @Path("id") movieId: Int,
-    ): MovieDetailResponse
+    ): MovieDetailDto
 
     @GET("/movie/{movie_id}/credits")
     suspend fun getMovieCast(@Path("movie_id") movieId: Int): CastingResponse

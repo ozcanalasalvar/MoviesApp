@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CastingResponse(
     @SerializedName("id") val id: Int,
-    @SerializedName("cast") val cast: CastingDto
+    @SerializedName("cast") val cast: List<CastingDto>
 )
 
 data class CastingDto(
@@ -15,9 +15,9 @@ data class CastingDto(
     @SerializedName("gender") val gender: Int,
     @SerializedName("id") val id: Int,
     @SerializedName("known_for_department") val known_for_department: String,
-    @SerializedName("name") val name: String,
+    @SerializedName("name") val name: String?,
     @SerializedName("order") val order: Int,
-    @SerializedName("original_name") val original_name: String,
+    @SerializedName("original_name") val original_name: String?,
     @SerializedName("popularity") val popularity: Double,
     @SerializedName("profile_path") val profile_path: String
 )

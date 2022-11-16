@@ -10,4 +10,6 @@ interface MovieRepository {
 
     suspend fun getTrendMovies() : Flow<Resource<List<Movie>>>
 
+    suspend fun getMovieDetail(movieId: Int): Flow<Resource<MovieDetail>>
+
 }
