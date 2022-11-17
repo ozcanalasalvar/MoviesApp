@@ -42,7 +42,7 @@ class MovieRepositoryImpl(
 
     override suspend fun getTrendMovies(): Flow<Resource<List<Movie>>> = flow {
         try {
-            val result = service.getPopularMovies(0).results.map {
+            val result = service.getPopularMovies(1).results.map {
                 it.toMovie()
             }
             emit(Resource.Success(result))
