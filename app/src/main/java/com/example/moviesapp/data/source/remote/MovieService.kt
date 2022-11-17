@@ -36,7 +36,7 @@ interface MovieService {
         @Path("id") movieId: Int,
     ): MovieDetailDto
 
-    @GET("/movie/{movie_id}/credits")
+    @GET("movie/{movie_id}/credits")
     suspend fun getMovieCast(@Path("movie_id") movieId: Int): CastingResponse
 
 
