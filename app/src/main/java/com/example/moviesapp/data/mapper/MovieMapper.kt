@@ -6,6 +6,7 @@ import com.example.moviesapp.data.MovieDetail
 import com.example.moviesapp.data.model.cast.CastingDto
 import com.example.moviesapp.data.model.detail.MovieDetailDto
 import com.example.moviesapp.data.model.list.MovieDto
+import com.example.moviesapp.util.reformatDate
 
 
 fun MovieDto.toMovie(): Movie {
@@ -14,10 +15,10 @@ fun MovieDto.toMovie(): Movie {
         popularity = this.popularity,
         voteAverage = this.vote_average,
         voteCount = this.vote_count,
-        image = this.poster_path.toMovieImage() ?: this.backdrop_path.toMovieImage() ?: "",
+        image = (this.poster_path ?: this.backdrop_path)?.toImageUrl(),
         title = this.title ?: this.original_title ?: "No title found",
-        overview = this.overview,
-        releaseDate = this.release_date ?: "No date found",
+        overview = this.overview ?: "No overview found",
+        releaseDate = this.release_date.reformatDate(),
         originalLanguage = this.original_language,
         isVideo = this.video
     )
@@ -26,14 +27,14 @@ fun MovieDto.toMovie(): Movie {
 fun MovieDetailDto.toMovieDetail(list: List<CastingDto>?): MovieDetail {
     return MovieDetail(
         id = this.id,
-        title = this.title ?: this.original_title ?: "",
-        image = this.poster_path.toMovieImage() ?: this.backdrop_path.toMovieImage(),
+        title = this.title ?: this.original_title ?: "No title found",
+        image = (this.poster_path ?: this.backdrop_path)?.toImageUrl(),
         voteAverage = this.vote_average,
         overview = this.overview,
         voteCount = this.vote_count,
         popularity = this.popularity,
         duration = this.runtime.durationToString(),
-        releaseDate = this.release_date,
+        releaseDate = this.release_date.reformatDate(),
         isVideo = this.video,
         castings = list?.map {
             it.toCasting()
@@ -44,14 +45,14 @@ fun MovieDetailDto.toMovieDetail(list: List<CastingDto>?): MovieDetail {
 fun CastingDto.toCasting(): Casting {
     return Casting(
         id = this.id,
-        name = this.name ?: this.original_name ?: "",
-        profileImage = this.profile_path.toMovieImage()
+        name = this.name ?: this.original_name ?: "No name found",
+        profileImage = this.profile_path?.toImageUrl()
     )
 }
 
 
-private fun String?.toMovieImage(): String? {
-    return if (this.isNullOrEmpty()) null else "https://www.themoviedb.org/t/p/w440_and_h660_face$this"
+private fun String.toImageUrl(): String {
+    return "https://www.themoviedb.org/t/p/w440_and_h660_face$this"
 }
 
 private fun Int.durationToString(): String {

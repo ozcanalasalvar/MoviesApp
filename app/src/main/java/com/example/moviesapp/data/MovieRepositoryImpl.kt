@@ -1,15 +1,11 @@
-package com.example.moviesapp.data.source
+package com.example.moviesapp.data
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.example.moviesapp.data.Movie
-import com.example.moviesapp.data.MovieDetail
-import com.example.moviesapp.data.MovieRepository
 import com.example.moviesapp.data.mapper.toMovie
 import com.example.moviesapp.data.mapper.toMovieDetail
-import com.example.moviesapp.data.model.cast.CastingDto
 import com.example.moviesapp.data.model.cast.CastingResponse
 import com.example.moviesapp.data.model.detail.MovieDetailDto
 import com.example.moviesapp.data.source.remote.MovieService
@@ -21,7 +17,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import okhttp3.Dispatcher
 import java.lang.Exception
 
 class MovieRepositoryImpl(

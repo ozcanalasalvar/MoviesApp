@@ -19,5 +19,5 @@ data class CastingDto(
     @SerializedName("order") val order: Int,
     @SerializedName("original_name") val original_name: String?,
     @SerializedName("popularity") val popularity: Double,
-    @SerializedName("profile_path") val profile_path: String
+    @SerializedName("profile_path") val profile_path: String?
 )

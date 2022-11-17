@@ -2,7 +2,7 @@ package com.example.moviesapp.data.model.detail
 
 data class MovieDetailDto(
     val adult: Boolean,
-    val backdrop_path: String,
+    val backdrop_path: String?,
     val budget: Int,
     val genres: List<Genre>,
     val homepage: String,
@@ -12,8 +12,8 @@ data class MovieDetailDto(
     val original_title: String?,
     val overview: String,
     val popularity: Double,
-    val poster_path: String,
-    val release_date: String,
+    val poster_path: String?,
+    val release_date: String?,
     val revenue: Int,
     val runtime: Int,
     val status: String,
