@@ -139,7 +139,7 @@ class MovieMapperTest {
     fun `map MovieDetailDto and if poster_path is null , return image string end with backdrop_path`() {
         val dto = movieDetailDto.copy(poster_path = null, backdrop_path = "path")
         val movie = dto.toMovieDetail(null)
-        assertThat(movie.image).endsWith(dto.backdrop_path)
+        assertThat(movie.image).isEqualTo("https://image.tmdb.org/t/p/w500" + dto.backdrop_path)
     }
 
 
@@ -157,7 +157,7 @@ class MovieMapperTest {
         val dto = movieDetailDto.copy(title = null, original_title = "original title")
         val movie = dto.toMovieDetail(null)
 
-        assertThat(movie.title).endsWith(movieDto.original_title)
+        assertThat(movie.title).isEqualTo(movieDto.original_title)
     }
 
 
@@ -182,7 +182,7 @@ class MovieMapperTest {
     fun `map CastingDto , returns profile picture ends with profile_path`() {
         val casting = castingDto.toCasting()
 
-        assertThat(casting.profileImage).endsWith(castingDto.profile_path)
+        assertThat(casting.profileImage).isEqualTo("https://image.tmdb.org/t/p/w500" + castingDto.profile_path)
     }
 
 

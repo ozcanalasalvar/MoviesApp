@@ -52,7 +52,7 @@ fun CastingDto.toCasting(): Casting {
 
 
 private fun String.toImageUrl(): String {
-    return "https://www.themoviedb.org/t/p/w440_and_h660_face$this"
+    return "https://image.tmdb.org/t/p/w500$this"
 }
 
 private fun Int.durationToString(): String {
