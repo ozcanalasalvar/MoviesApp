@@ -24,11 +24,11 @@ class NowPlayingMoviesPagingSourceTest {
     @get:Rule
     val mainCoroutineRule = MainCoroutineRule()
 
-    lateinit var service: FakeMovieService
+    private lateinit var service: FakeMovieService
 
-    lateinit var pagingSource: NowPlayingMoviesPagingSource
+    private lateinit var pagingSource: NowPlayingMoviesPagingSource
 
-    lateinit var response: List<MovieDto>
+    private lateinit var response: List<MovieDto>
 
     @Before
     fun setup() {
