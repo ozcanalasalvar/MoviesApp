@@ -1,6 +1,5 @@
 package com.example.moviesapp.data.source.remote
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingSource
 import com.example.moviesapp.FakeMovieService
 import com.example.moviesapp.data.model.list.MovieDto
@@ -16,7 +15,6 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.MockitoAnnotations
 import retrofit2.HttpException
 import retrofit2.Response
 
@@ -24,26 +22,18 @@ import retrofit2.Response
 class NowPlayingMoviesPagingSourceTest {
 
     @get:Rule
-    val instantExecutorRule = InstantTaskExecutorRule()
-
-    @get:Rule
     val mainCoroutineRule = MainCoroutineRule()
-
 
     lateinit var service: FakeMovieService
 
     lateinit var pagingSource: NowPlayingMoviesPagingSource
 
-    companion object {
-        val response: List<MovieDto> =
-            listOf(TestData.provideRemoteMoviesFromAssets().results.first())
-    }
+    lateinit var response: List<MovieDto>
 
     @Before
     fun setup() {
-        MockitoAnnotations.initMocks(this)
         service = FakeMovieService()
-        service.init()
+        response = listOf(TestData.provideRemoteMoviesFromAssets().results.first())
         pagingSource = NowPlayingMoviesPagingSource(service)
     }
 

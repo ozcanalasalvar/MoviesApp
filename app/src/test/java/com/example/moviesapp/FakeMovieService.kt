@@ -5,6 +5,7 @@ import com.example.moviesapp.data.model.cast.CastingDto
 import com.example.moviesapp.data.model.cast.CastingResponse
 import com.example.moviesapp.data.model.detail.Genre
 import com.example.moviesapp.data.model.detail.MovieDetailDto
+import com.example.moviesapp.data.model.list.MovieDto
 import com.example.moviesapp.data.source.remote.MovieService
 import com.example.moviesapp.data.model.list.MovieResponse
 import com.example.moviesapp.util.TestData
@@ -16,12 +17,11 @@ import retrofit2.Response
 
 class FakeMovieService : MovieService {
 
-    private val movies = TestData.provideRemoteMoviesFromAssets()
+    private var movies: MovieResponse = TestData.provideRemoteMoviesFromAssets()
 
     private val movieMap: MutableMap<Int, MovieResponse> = mutableMapOf()
 
-    @VisibleForTesting
-    fun init() {
+    init {
         movies.results.forEachIndexed { index, movieDto ->
             movieMap[index + 1] = MovieResponse(
                 results = listOf(movieDto),
@@ -76,24 +76,7 @@ class FakeMovieService : MovieService {
     }
 
     override suspend fun getMovieCast(movieId: Int): CastingResponse {
-        return CastingResponse(
-            id = 1, cast = listOf(
-                CastingDto(
-                    adult = false,
-                    cast_id = 1,
-                    character = "character",
-                    credit_id = "28",
-                    gender = 2,
-                    id = 1,
-                    known_for_department = "Acting",
-                    name = "Edward Norton",
-                    order = 0,
-                    original_name = "Edward Norton",
-                    popularity = 7.861,
-                    profile_path = "/5XBzD5WuTyVQZeS4VI25z2moMeY.jpg",
-                )
-            )
-        )
+        return TestData.provideCastingFromAssets(movieId)
     }
 
     @VisibleForTesting
