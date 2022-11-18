@@ -1,4 +1,5 @@
 package com.example.moviesapp.data.source.remote
+
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesapp.data.model.list.MovieDto
@@ -27,7 +28,7 @@ class NowPlayingMoviesPagingSource(
                 } else {
                     // By default, initial load size = 3 * NETWORK PAGE SIZE
                     // ensure we're not requesting duplicating items at the 2nd request
-                    pageIndex + (params.loadSize / NETWORK_PAGE_SIZE)
+                    response.page + 1
                 }
             LoadResult.Page(
                 data = movies,

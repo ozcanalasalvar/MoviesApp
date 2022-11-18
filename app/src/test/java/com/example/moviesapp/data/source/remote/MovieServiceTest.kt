@@ -1,6 +1,5 @@
-package com.example.moviesapp.data.mapper.source.remote
+package com.example.moviesapp.data.source.remote
 
-import com.example.moviesapp.data.source.remote.MovieService
 import com.example.moviesapp.util.FileReaderUtil
 import com.example.moviesapp.util.MainCoroutineRule
 import com.google.common.truth.Truth.assertThat
@@ -27,7 +26,6 @@ class MovieServiceTest {
     private val mockWebServer = MockWebServer()
     private lateinit var movieService: MovieService
 
-    @ExperimentalCoroutinesApi
     @get:Rule
     val mainCoroutineRule = MainCoroutineRule()
 

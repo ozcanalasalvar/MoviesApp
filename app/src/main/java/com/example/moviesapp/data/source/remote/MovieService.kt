@@ -3,8 +3,7 @@ package com.example.moviesapp.data.source.remote
 import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.data.model.cast.CastingResponse
 import com.example.moviesapp.data.model.detail.MovieDetailDto
-import com.example.moviesapp.data.model.list.MovieDto
-import com.example.moviesapp.data.util.MovieResponse
+import com.example.moviesapp.data.model.list.MovieResponse
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -23,13 +22,13 @@ interface MovieService {
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query(QUERY_PAGE) page: Int,
-    ): MovieResponse<List<MovieDto>>
+    ): MovieResponse
 
 
     @GET("movie/now_playing")
     suspend fun getNowPlayingMovies(
         @Query(QUERY_PAGE) page: Int,
-    ): MovieResponse<List<MovieDto>>
+    ): MovieResponse
 
     @GET("movie/{id}")
     suspend fun getMovieDetail(
