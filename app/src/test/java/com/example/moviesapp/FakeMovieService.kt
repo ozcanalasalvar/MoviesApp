@@ -56,7 +56,7 @@ class FakeMovieService : MovieService {
             budget = 28,
             genres = listOf(Genre(1, "1")),
             homepage = "homePage",
-            id = 1,
+            id = 550,
             imdb_id = "tt0137523",
             original_language = "US",
             original_title = "original title",

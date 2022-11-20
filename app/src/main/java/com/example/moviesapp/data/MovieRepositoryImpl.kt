@@ -14,9 +14,7 @@ import com.example.moviesapp.data.util.NETWORK_PAGE_SIZE
 import com.example.moviesapp.data.util.Resource
 import com.example.moviesapp.data.util.isSuccess
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import java.lang.Exception
 
 class MovieRepositoryImpl(
@@ -51,46 +49,37 @@ class MovieRepositoryImpl(
         }
     }
 
-    override suspend fun getMovieDetail(movieId: Int): Flow<Resource<MovieDetail>> = flow {
-        withContext(ioDispatcher) {
-            coroutineScope {
-                val _detail = async { getDetail(movieId) }
-                val _cast = async { getCasting(movieId) }
 
-                val detailResult = _detail.await()
-                val castDtoResult = _cast.await()
-
-                val casts = castDtoResult
-                when (detailResult) {
-                    is Resource.Error -> emit(Resource.Error(detailResult.exception))
-                    is Resource.Success -> {
-                        if (casts.isSuccess()) {
-                            emit(Resource.Success(detailResult.data.toMovieDetail((casts as Resource.Success).data.cast)))
-                        } else {
-                            emit(Resource.Success(detailResult.data.toMovieDetail(null)))
-                        }
+    override suspend fun getMovieDetail(movieId: Int): Flow<Resource<MovieDetail>> {
+        return combine(getDetail(550), getCasting(550)) { detail, castings ->
+            when (detail) {
+                is Resource.Error -> (Resource.Error(detail.exception))
+                is Resource.Success -> {
+                    if (castings.isSuccess()) {
+                        Resource.Success(detail.data.toMovieDetail((castings as Resource.Success).data.cast))
+                    } else {
+                        Resource.Success(detail.data.toMovieDetail(null))
                     }
                 }
             }
         }
     }
 
-
-    private suspend fun getDetail(movieId: Int): Resource<MovieDetailDto> {
-        return try {
+    private suspend fun getDetail(movieId: Int): Flow<Resource<MovieDetailDto>> = flow {
+        try {
             val result = service.getMovieDetail(movieId)
-            Resource.Success(result)
+            emit(Resource.Success(result))
         } catch (e: Exception) {
-            Resource.Error(e)
+            emit(Resource.Error(e))
         }
     }
 
-    private suspend fun getCasting(movieId: Int): Resource<CastingResponse> {
-        return try {
+    private suspend fun getCasting(movieId: Int): Flow<Resource<CastingResponse>> = flow {
+        try {
             val result = service.getMovieCast(movieId)
-            Resource.Success(result)
+            emit(Resource.Success(result))
         } catch (e: Exception) {
-            Resource.Error(e)
+            emit(Resource.Error(e))
         }
     }
 }
