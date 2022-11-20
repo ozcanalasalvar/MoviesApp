@@ -21,7 +21,6 @@ import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val service: MovieService,
-    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : MovieRepository {
 
     override fun getNowPlayingMovies(): Flow<PagingData<Movie>> {
@@ -40,12 +39,12 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTrendMovies(): Flow<Resource<List<Movie>>> = flow {
-        try {
+    override suspend fun getTrendMovies(): Resource<List<Movie>> {
+        return try {
             val result = service.getPopularMovies(1).results.map {
                 it.toMovie()
             }
-            emit(Resource.Success(result))
+            Resource.Success(result)
         } catch (e: Exception) {
             Resource.Error(e)
         }
@@ -53,7 +52,7 @@ class MovieRepositoryImpl @Inject constructor(
 
 
     override suspend fun getMovieDetail(movieId: Int): Flow<Resource<MovieDetail>> {
-        return combine(getDetail(550), getCasting(550)) { detail, castings ->
+        return combine(getDetail(movieId), getCasting(movieId)) { detail, castings ->
             when (detail) {
                 is Resource.Error -> (Resource.Error(detail.exception))
                 is Resource.Success -> {
@@ -74,7 +73,7 @@ class MovieRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(Resource.Error(e))
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     private suspend fun getCasting(movieId: Int): Flow<Resource<CastingResponse>> = flow {
         try {
@@ -83,5 +82,5 @@ class MovieRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(Resource.Error(e))
         }
-    }
+    }.flowOn(Dispatchers.IO)
 }

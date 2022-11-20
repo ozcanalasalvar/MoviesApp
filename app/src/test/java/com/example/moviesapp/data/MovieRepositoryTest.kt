@@ -22,21 +22,19 @@ class MovieRepositoryTest {
 
     private lateinit var repository: MovieRepository
 
-    private val dispatcher = UnconfinedTestDispatcher()
-
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
     @Before
     fun setUp() {
         val movieService = FakeMovieService()
-        repository = MovieRepositoryImpl(movieService, dispatcher)
+        repository = MovieRepositoryImpl(movieService)
     }
 
     @Test
     fun `getTrendMovies , returns list of Movie`() = runTest {
 
-        val result = repository.getTrendMovies().first()
+        val result = repository.getTrendMovies()
 
         val expected = TestData.provideRemoteMoviesFromAssets().results.first().toMovie()
 

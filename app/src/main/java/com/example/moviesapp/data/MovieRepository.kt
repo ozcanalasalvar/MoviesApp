@@ -8,7 +8,7 @@ interface MovieRepository {
 
     fun getNowPlayingMovies(): Flow<PagingData<Movie>>
 
-    suspend fun getTrendMovies() : Flow<Resource<List<Movie>>>
+    suspend fun getTrendMovies() : Resource<List<Movie>>
 
     suspend fun getMovieDetail(movieId: Int): Flow<Resource<MovieDetail>>
 
