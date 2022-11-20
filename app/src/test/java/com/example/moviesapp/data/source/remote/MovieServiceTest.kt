@@ -48,7 +48,7 @@ class MovieServiceTest {
     fun `Get popular movies remote response structure match JSON Server response`() = runTest {
         val movies = movieService.getPopularMovies(page = 1).results
 
-        assertThat(movies.size).isEqualTo(20)
+        assertThat(movies).hasSize(20)
         assertThat(movies.first().id).isEqualTo(19404)
 
     }
@@ -58,7 +58,7 @@ class MovieServiceTest {
     fun `Get nowPlaying movies remote response structure match JSON Server response`() = runTest {
         val movies = movieService.getNowPlayingMovies(page = 1).results
 
-        assertThat(movies.size).isEqualTo(20)
+        assertThat(movies).hasSize(20)
         assertThat(movies.first().id).isEqualTo(19404)
 
     }
@@ -68,7 +68,7 @@ class MovieServiceTest {
         val casting = movieService.getMovieCast(movieId)
 
         assertThat(casting.id).isEqualTo(movieId)
-        assertThat(casting.cast.size).isEqualTo(2)
+        assertThat(casting.cast).hasSize(2)
         assertThat(casting.cast.first().cast_id).isEqualTo(4)
 
     }
