@@ -2,6 +2,23 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation">
+    android:id="@+id/navigation"
+    app:startDestination="@id/moviesScreen">
 
+    <fragment
+        android:id="@+id/moviesScreen"
+        android:name="com.example.moviesapp.movies.MoviesScreen"
+        android:label="MoviesScreen">
+        <action
+            android:id="@+id/action_moviesScreen_to_movieDetailScreen"
+            app:destination="@id/movieDetailScreen">
+            <argument
+                android:name="movieId"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailScreen"
+        android:name="com.example.moviesapp.moviedetail.MovieDetailScreen"
+        android:label="MovieDetailScreen" />
 </navigation>

@@ -13,13 +13,15 @@ import com.example.moviesapp.data.source.remote.NowPlayingMoviesPagingSource
 import com.example.moviesapp.data.util.NETWORK_PAGE_SIZE
 import com.example.moviesapp.data.util.Resource
 import com.example.moviesapp.data.util.isSuccess
+import com.example.moviesapp.di.IoDispatcher
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
+import javax.inject.Inject
 
-class MovieRepositoryImpl(
+class MovieRepositoryImpl @Inject constructor(
     private val service: MovieService,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : MovieRepository {
 
     override fun getNowPlayingMovies(): Flow<PagingData<Movie>> {
