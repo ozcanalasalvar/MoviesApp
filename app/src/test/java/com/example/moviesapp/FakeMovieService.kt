@@ -1,11 +1,9 @@
 package com.example.moviesapp
 
 import androidx.annotation.VisibleForTesting
-import com.example.moviesapp.data.model.cast.CastingDto
 import com.example.moviesapp.data.model.cast.CastingResponse
 import com.example.moviesapp.data.model.detail.Genre
 import com.example.moviesapp.data.model.detail.MovieDetailDto
-import com.example.moviesapp.data.model.list.MovieDto
 import com.example.moviesapp.data.source.remote.MovieService
 import com.example.moviesapp.data.model.list.MovieResponse
 import com.example.moviesapp.util.TestData
@@ -14,8 +12,11 @@ import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.HttpException
 import retrofit2.Response
+import java.lang.Exception
 
 class FakeMovieService : MovieService {
+
+    private var shouldReturnError = false
 
     private var movies: MovieResponse = TestData.provideRemoteMoviesFromAssets()
 
@@ -32,12 +33,14 @@ class FakeMovieService : MovieService {
         }
     }
 
-    private var throwException: Boolean = false
-
-    override suspend fun getPopularMovies(page: Int): MovieResponse = movies
+    override suspend fun getPopularMovies(page: Int): MovieResponse {
+        if (shouldReturnError)
+            throw Exception("Test exception")
+        return movies
+    }
 
     override suspend fun getNowPlayingMovies(page: Int): MovieResponse {
-        if (throwException)
+        if (shouldReturnError)
             throw HttpException(
                 Response.error<ResponseBody>(
                     404,
@@ -50,6 +53,9 @@ class FakeMovieService : MovieService {
     }
 
     override suspend fun getMovieDetail(movieId: Int): MovieDetailDto {
+        if (shouldReturnError)
+            throw Exception("Test exception")
+
         return MovieDetailDto(
             adult = false,
             backdrop_path = "backDrop",
@@ -76,11 +82,13 @@ class FakeMovieService : MovieService {
     }
 
     override suspend fun getMovieCast(movieId: Int): CastingResponse {
+        if (shouldReturnError)
+            throw Exception("Test exception")
         return TestData.provideCastingFromAssets(movieId)
     }
 
     @VisibleForTesting
-    fun shouldThrowException(shouldThrow: Boolean) {
-        throwException = shouldThrow
+    fun setReturnError(value: Boolean) {
+        this.shouldReturnError = value
     }
 }

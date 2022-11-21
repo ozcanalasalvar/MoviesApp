@@ -56,7 +56,7 @@ class MovieRepositoryImpl @Inject constructor(
             when (detail) {
                 is Resource.Error -> (Resource.Error(detail.exception))
                 is Resource.Success -> {
-                    if (castings.isSuccess()) {
+                    if (castings.isSuccess) {
                         Resource.Success(detail.data.toMovieDetail((castings as Resource.Success).data.cast))
                     } else {
                         Resource.Success(detail.data.toMovieDetail(null))

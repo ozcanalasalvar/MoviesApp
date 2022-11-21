@@ -59,7 +59,7 @@ class NowPlayingMoviesPagingSourceTest {
 
     @Test
     fun `movie paging source load - failure - http error`() = runBlocking {
-        service.shouldThrowException(true)
+        service.setReturnError(true)
 
         val expectedResult =
             PagingSource.LoadResult.Error<Int, MovieDto>(

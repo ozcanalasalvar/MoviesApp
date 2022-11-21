@@ -1,6 +1,6 @@
 package com.example.moviesapp.data.util
 
-sealed class Resource<out T> {
+sealed class Resource<out R> {
 
     data class Success<out T>(val data: T) : Resource<T>()
     data class Error(val exception: Exception) : Resource<Nothing>()
@@ -13,4 +13,5 @@ sealed class Resource<out T> {
     }
 }
 
-fun Resource<*>.isSuccess(): Boolean = this is Resource.Success
+val Resource<*>.isSuccess
+    get() = this is Resource.Success && data != null

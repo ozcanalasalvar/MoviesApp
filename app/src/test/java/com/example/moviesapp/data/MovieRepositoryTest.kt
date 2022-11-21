@@ -38,7 +38,7 @@ class MovieRepositoryTest {
 
         val expected = TestData.provideRemoteMoviesFromAssets().results.first().toMovie()
 
-        assertThat(result.isSuccess()).isTrue()
+        assertThat(result.isSuccess).isTrue()
         assertThat((result as Resource.Success).data.first()).isEqualTo(expected)
     }
 
@@ -47,7 +47,7 @@ class MovieRepositoryTest {
     fun `getMovieDetail , returns MovieDetail with casting data`() = runTest {
         val result = repository.getMovieDetail(550).first()
 
-        assertThat(result.isSuccess()).isTrue()
+        assertThat(result.isSuccess).isTrue()
         assertThat((result as Resource.Success).data.id).isEqualTo(550)
         assertThat(result.data.castings?.first()).isNotNull()
 
