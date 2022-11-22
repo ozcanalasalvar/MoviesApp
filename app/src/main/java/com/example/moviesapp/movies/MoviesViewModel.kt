@@ -21,14 +21,25 @@ class MoviesViewModel @Inject constructor(private val repository: MovieRepositor
     private val _movies: MutableLiveData<List<Movie>> = MutableLiveData()
     val movies: LiveData<List<Movie>> = _movies
 
+    var pagingDataFlow: Flow<PagingData<Movie>>? = null
+
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String> = _error
 
-    fun getNowPlayingMovies(): Flow<PagingData<Movie>> =
-        repository.getNowPlayingMovies().cachedIn(viewModelScope)
+    init {
+        getNowPlayingMovies()
+    }
+
+    private fun getNowPlayingMovies() = viewModelScope.launch {
+        if (pagingDataFlow != null)
+            pagingDataFlow
+        else
+            pagingDataFlow = repository.getNowPlayingMovies().cachedIn(viewModelScope)
+    }
 
     init {
         getTrendMovies()
+        getNowPlayingMovies()
     }
 
     fun getTrendMovies() = viewModelScope.launch {

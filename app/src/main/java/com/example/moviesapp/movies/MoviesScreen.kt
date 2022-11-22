@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.adapters.MoviePagerAdapter
 import com.example.moviesapp.adapters.MovieSliderAdapter
+import com.example.moviesapp.data.Movie
 import com.example.moviesapp.databinding.MoviesScreenLayoutBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -28,18 +30,27 @@ class MoviesScreen : Fragment() {
         val binding = MoviesScreenLayoutBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        val movieSliderAdapter: MovieSliderAdapter = MovieSliderAdapter(arrayListOf())
+        val movieSliderAdapter: MovieSliderAdapter = MovieSliderAdapter(arrayListOf()) {
+            navigateDetail(it)
+        }
         binding.tabDots.setupWithViewPager(binding.slider, true)
         binding.slider.adapter = movieSliderAdapter
         collectTrendMovies(movieSliderAdapter)
 
 
-        val pagingAdapter = MoviePagerAdapter()
+        val pagingAdapter = MoviePagerAdapter {
+            navigateDetail(it)
+        }
         binding.rvAllMovies.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAllMovies.adapter = pagingAdapter
         collectNowPlayingMovies(pagingAdapter)
 
         return binding.root
+    }
+
+    private fun navigateDetail(movie: Movie) {
+        val action = MoviesScreenDirections.actionMoviesScreenToMovieDetailScreen(movie.id)
+        findNavController().navigate(action)
     }
 
     private fun collectTrendMovies(adapter: MovieSliderAdapter) {
@@ -51,7 +62,7 @@ class MoviesScreen : Fragment() {
 
     private fun collectNowPlayingMovies(adapter: MoviePagerAdapter) {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getNowPlayingMovies().collectLatest { movies ->
+            viewModel.pagingDataFlow?.collectLatest { movies ->
                 adapter.submitData(movies)
             }
         }

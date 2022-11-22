@@ -11,7 +11,10 @@ import com.bumptech.glide.Glide
 import com.example.moviesapp.R
 import com.example.moviesapp.data.Movie
 
-class MovieSliderAdapter(private var movies: ArrayList<Movie>) : PagerAdapter() {
+class MovieSliderAdapter(
+    private var movies: ArrayList<Movie>,
+    val clickListener: (movie: Movie) -> Unit
+) : PagerAdapter() {
 
     @SuppressLint("CheckResult", "SetTextI18n")
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -37,6 +40,8 @@ class MovieSliderAdapter(private var movies: ArrayList<Movie>) : PagerAdapter() 
             .load(movie.image)
             .centerCrop()
             .into(imageView)
+
+        root.setOnClickListener { clickListener(movie) }
 
         //add container to root view
         container.addView(root)
