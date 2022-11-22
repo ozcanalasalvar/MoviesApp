@@ -1,6 +1,7 @@
 package com.example.moviesapp
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +24,21 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             networkMonitor.isOnline.collectLatest {}
 
+        }
+    }
+
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if (hasFocus) {
+            window.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            // Set the content to appear under the system bars so that the
+                            // content doesn't resize when the system bars hide and show.
+                            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION // layout Behind nav bar
+                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN // layout Behind status bar
+                    )
         }
     }
 }

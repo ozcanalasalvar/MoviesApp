@@ -24,11 +24,18 @@ class MoviePagerAdapter : PagingDataAdapter<Movie, RecyclerView.ViewHolder>(Movi
     class MovieViewHolder(private val binding: MovieListItemCellBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie?) {
-            Glide
-                .with(binding.imgMovie.context)
-                .load(movie?.image)
-                .centerCrop()
-                .into(binding.imgMovie);
+            movie?.let {
+                Glide
+                    .with(binding.imgMovie.context)
+                    .load(movie.image)
+                    .centerCrop()
+                    .into(binding.imgMovie)
+
+                binding.tvMovieTitle.text = movie.title
+                binding.tvMovieDate.text = movie.releaseDate
+                binding.tvOverview.text = movie.overview
+            }
+
         }
     }
 
