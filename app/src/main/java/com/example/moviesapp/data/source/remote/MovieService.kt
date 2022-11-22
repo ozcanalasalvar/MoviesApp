@@ -65,11 +65,11 @@ interface MovieService {
 
                 })
                 .addInterceptor(logger)
-                .build()
+
 
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(client)
+                .client(client.build())
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
                 .create(MovieService::class.java)

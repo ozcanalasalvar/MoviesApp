@@ -27,6 +27,9 @@ class MoviesViewModel @Inject constructor(private val repository: MovieRepositor
     fun getNowPlayingMovies(): Flow<PagingData<Movie>> =
         repository.getNowPlayingMovies().cachedIn(viewModelScope)
 
+    init {
+        getTrendMovies()
+    }
 
     fun getTrendMovies() = viewModelScope.launch {
         when (val result = repository.getTrendMovies()) {
