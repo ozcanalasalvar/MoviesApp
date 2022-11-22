@@ -11,6 +11,7 @@ import com.example.moviesapp.util.TestData
 import com.example.moviesapp.util.getOrAwaitValueTest
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
@@ -34,7 +35,8 @@ class MoviesViewModelTest {
     @Before
     fun setUp() {
         service = FakeMovieService()
-        repository = MovieRepositoryImpl(service)
+        val testDispatcher = UnconfinedTestDispatcher()
+        repository = MovieRepositoryImpl(service,testDispatcher)
         viewModel = MoviesViewModel(repository)
     }
 
@@ -47,7 +49,7 @@ class MoviesViewModelTest {
         val expected = TestData.provideRemoteMoviesFromAssets().results.first().toMovie()
 
         assertThat(result).isNotNull()
-        assertThat(result!!.first()).isEqualTo(expected)
+        assertThat(result.first()).isEqualTo(expected)
     }
 
     @Test

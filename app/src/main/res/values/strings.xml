@@ -4,4 +4,8 @@
     <string name="api_key">6cea5507c1dafd8f492d1d9a552483bc</string>
     <string name="trend_movies">Trend Movies</string>
     <string name="all_films">All Films</string>
+    <string name="vote_count">Vote Count</string>
+    <string name="vote_average">Vote Average</string>
+    <string name="popularity">Popularity</string>
+    <string name="cast">Cast</string>
 </resources>

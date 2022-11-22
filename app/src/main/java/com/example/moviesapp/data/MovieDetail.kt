@@ -11,7 +11,8 @@ data class MovieDetail(
     val duration: String,//Format
     val releaseDate: String,
     val isVideo: Boolean,
-    val castings: List<Casting>?
+    val castings: List<Casting>?,
+    val genres: String
 )
 
 data class Casting(

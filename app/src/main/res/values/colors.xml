@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="slider_frame">#66434343</color>
     <color name="white_op_33">#48FFFFFF</color>
-    <color name="light_grey">#E9ECEF</color>
+    <color name="bg_grey">#CCCCCC</color>
+    <color name="light_grey">#A8A8A8</color>
+    <color name="dark_grey2">#565656</color>
     <color name="dark_grey">#4b4c4c</color>
     <color name="yellow">#E6B91E</color>
 </resources>

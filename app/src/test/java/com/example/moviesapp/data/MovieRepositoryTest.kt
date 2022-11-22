@@ -28,7 +28,8 @@ class MovieRepositoryTest {
     @Before
     fun setUp() {
         val movieService = FakeMovieService()
-        repository = MovieRepositoryImpl(movieService)
+        val testDispatcher = UnconfinedTestDispatcher()
+        repository = MovieRepositoryImpl(movieService,testDispatcher)
     }
 
     @Test

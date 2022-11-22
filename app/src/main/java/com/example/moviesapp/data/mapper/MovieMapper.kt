@@ -4,6 +4,7 @@ import com.example.moviesapp.data.Casting
 import com.example.moviesapp.data.Movie
 import com.example.moviesapp.data.MovieDetail
 import com.example.moviesapp.data.model.cast.CastingDto
+import com.example.moviesapp.data.model.detail.Genre
 import com.example.moviesapp.data.model.detail.MovieDetailDto
 import com.example.moviesapp.data.model.list.MovieDto
 import com.example.moviesapp.util.reformatDate
@@ -38,7 +39,8 @@ fun MovieDetailDto.toMovieDetail(list: List<CastingDto>?): MovieDetail {
         isVideo = this.video,
         castings = list?.map {
             it.toCasting()
-        }
+        },
+        genres = this.genres.toUIText()
     )
 }
 
@@ -48,6 +50,17 @@ fun CastingDto.toCasting(): Casting {
         name = this.name ?: this.original_name ?: "No name found",
         profileImage = this.profile_path?.toImageUrl()
     )
+}
+
+fun List<Genre>.toUIText(): String {
+    var text = ""
+    this.forEachIndexed { index, genre ->
+        text += genre.name
+
+        if (index != this.size - 1)
+            text += " / "
+    }
+    return text
 }
 
 
