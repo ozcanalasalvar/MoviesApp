@@ -20,7 +20,7 @@
                     android:id="@+id/pnl_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#cfcfcf"
+                    android:background="@color/bg_grey"
                     android:paddingStart="15dp"
                     android:paddingTop="20dp"
                     android:paddingEnd="15dp"
