@@ -1,12 +1,22 @@
 package com.example.moviesapp
 
 import androidx.annotation.VisibleForTesting
+import androidx.paging.PagingData
+import com.example.moviesapp.data.Movie
+import com.example.moviesapp.data.MovieDetail
+import com.example.moviesapp.data.MovieRepository
+import com.example.moviesapp.data.mapper.toMovie
+import com.example.moviesapp.data.mapper.toMovieDetail
 import com.example.moviesapp.data.model.cast.CastingResponse
 import com.example.moviesapp.data.model.detail.Genre
 import com.example.moviesapp.data.model.detail.MovieDetailDto
 import com.example.moviesapp.data.source.remote.MovieService
 import com.example.moviesapp.data.model.list.MovieResponse
+import com.example.moviesapp.data.util.Resource
 import com.example.moviesapp.util.TestData
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -14,7 +24,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.lang.Exception
 
-class FakeMovieService : MovieService {
+class FakeMovieRepository : MovieRepository {
 
     private var shouldReturnError = false
 
@@ -33,30 +43,28 @@ class FakeMovieService : MovieService {
         }
     }
 
-    override suspend fun getPopularMovies(page: Int): MovieResponse {
-        if (shouldReturnError)
-            throw Exception("Test exception")
-        return movies
+    @VisibleForTesting
+    fun setReturnError(value: Boolean) {
+        this.shouldReturnError = value
     }
 
-    override suspend fun getNowPlayingMovies(page: Int): MovieResponse {
+    override fun getNowPlayingMovies(): Flow<PagingData<Movie>> = flow {
+        return@flow
+    }
+
+    override suspend fun getTrendMovies(): Resource<List<Movie>> {
         if (shouldReturnError)
-            throw HttpException(
-                Response.error<ResponseBody>(
-                    404,
-                    "some content".toResponseBody("plain/text".toMediaTypeOrNull())
-                )
-            )
-        else {
-            return movieMap[page]!!
+            return Resource.Error(Exception("Test Exception"))
+        return Resource.Success(movies.results.map { it.toMovie() })
+    }
+
+    override suspend fun getMovieDetail(movieId: Int): Flow<Resource<MovieDetail>> = flow {
+        if (shouldReturnError){
+            emit(Resource.Error(Exception("Test exception")))
+            return@flow
         }
-    }
 
-    override suspend fun getMovieDetail(movieId: Int): MovieDetailDto {
-        if (shouldReturnError)
-            throw Exception("Test exception")
-
-        return MovieDetailDto(
+        val dto = MovieDetailDto(
             adult = false,
             backdrop_path = "backDrop",
             budget = 28,
@@ -79,16 +87,7 @@ class FakeMovieService : MovieService {
             vote_average = 5.0,
             vote_count = 288,
         )
-    }
+        emit(Resource.Success(dto.toMovieDetail(TestData.provideCastingFromAssets(550).cast)))
 
-    override suspend fun getMovieCast(movieId: Int): CastingResponse {
-        if (shouldReturnError)
-            throw Exception("Test exception")
-        return TestData.provideCastingFromAssets(movieId)
-    }
-
-    @VisibleForTesting
-    fun setReturnError(value: Boolean) {
-        this.shouldReturnError = value
     }
 }

@@ -1,11 +1,10 @@
 package com.example.moviesapp.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.moviesapp.FakeMovieService
+import com.example.moviesapp.FakeMovieRepository
 import com.example.moviesapp.data.MovieRepository
 import com.example.moviesapp.data.MovieRepositoryImpl
 import com.example.moviesapp.data.mapper.toMovie
-import com.example.moviesapp.data.util.Resource
 import com.example.moviesapp.util.MainCoroutineRule
 import com.example.moviesapp.util.TestData
 import com.example.moviesapp.util.getOrAwaitValueTest
@@ -28,15 +27,11 @@ class MoviesViewModelTest {
 
     private lateinit var viewModel: MoviesViewModel
 
-    private lateinit var repository: MovieRepository
-
-    private lateinit var service: FakeMovieService
+    private lateinit var repository: FakeMovieRepository
 
     @Before
     fun setUp() {
-        service = FakeMovieService()
-        val testDispatcher = UnconfinedTestDispatcher()
-        repository = MovieRepositoryImpl(service,testDispatcher)
+        repository = FakeMovieRepository()
         viewModel = MoviesViewModel(repository)
     }
 
@@ -54,12 +49,12 @@ class MoviesViewModelTest {
 
     @Test
     fun `fetch movies , return error`() = runTest {
-        service.setReturnError(true)
+        repository.setReturnError(true)
         viewModel.getTrendMovies()
         val result = viewModel.error.getOrAwaitValueTest()
 
 
         assertThat(result).isNotNull()
-        assertThat(result).isEqualTo("Test exception")
+        assertThat(result).isEqualTo("Test Exception")
     }
 }
