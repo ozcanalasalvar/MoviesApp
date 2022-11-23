@@ -27,16 +27,17 @@ class NowPlayingMoviesPagingSourceTest {
 
     private lateinit var pagingSource: NowPlayingMoviesPagingSource
 
-    companion object {
-        var response: MovieResponse = TestData.provideRemoteMoviesFromAssets()
-        var response2 = response.copy(page = 2)
-    }
+    lateinit var response: MovieResponse
+    lateinit var response2: MovieResponse
 
 
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
         pagingSource = NowPlayingMoviesPagingSource(service)
+
+        response = TestData.provideRemoteMoviesFromAssets()
+        response2 = response.copy(page = 2)
     }
 
 
