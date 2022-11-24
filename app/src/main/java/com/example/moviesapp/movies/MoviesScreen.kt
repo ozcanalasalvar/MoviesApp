@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import com.example.moviesapp.adapters.MoviePagerAdapter
 import com.example.moviesapp.adapters.MovieSliderAdapter
 import com.example.moviesapp.data.Movie
 import com.example.moviesapp.databinding.MoviesScreenLayoutBinding
+import com.example.moviesapp.util.showFailurePopup
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -35,7 +37,6 @@ class MoviesScreen : Fragment() {
         }
         binding.tabDots.setupWithViewPager(binding.slider, true)
         binding.slider.adapter = movieSliderAdapter
-        collectTrendMovies(movieSliderAdapter)
 
 
         val pagingAdapter = MoviePagerAdapter {
@@ -43,8 +44,10 @@ class MoviesScreen : Fragment() {
         }
         binding.rvAllMovies.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAllMovies.adapter = pagingAdapter
-        collectNowPlayingMovies(pagingAdapter)
 
+        collectTrendMovies(movieSliderAdapter)
+        collectNowPlayingMovies(pagingAdapter)
+        observeError()
         return binding.root
     }
 
@@ -65,6 +68,12 @@ class MoviesScreen : Fragment() {
             viewModel.pagingDataFlow?.collectLatest { movies ->
                 adapter.submitData(movies)
             }
+        }
+    }
+
+    private fun observeError() {
+        viewModel.error.observe(viewLifecycleOwner) {
+            view?.showFailurePopup(it)
         }
     }
 }

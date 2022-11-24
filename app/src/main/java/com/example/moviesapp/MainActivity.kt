@@ -2,10 +2,11 @@ package com.example.moviesapp
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.moviesapp.util.NetworkMonitor
+import com.example.moviesapp.util.showFailurePopup
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -22,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         lifecycleScope.launch {
-            networkMonitor.isOnline.collectLatest {}
+            networkMonitor.isOnline.collectLatest { connected ->
+                if (!connected)
+                    findViewById<FrameLayout>(R.id.container).showFailurePopup(getString(R.string.network_error))
+            }
 
         }
     }
