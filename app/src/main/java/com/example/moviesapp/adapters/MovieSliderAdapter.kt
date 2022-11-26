@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
@@ -26,6 +27,7 @@ class MovieSliderAdapter(
         val root = inflater.inflate(R.layout.slider_layout, null)
 
         //Define the views
+        val sliderRoot = root.findViewById<FrameLayout>(R.id.sliderRoot)
         val imageView = root.findViewById<ImageView>(R.id.img_movie)
         val textTitle = root.findViewById<TextView>(R.id.tv_movie_title)
         val textDescription = root.findViewById<TextView>(R.id.tv_movie_overview)
@@ -41,7 +43,7 @@ class MovieSliderAdapter(
             .centerCrop()
             .into(imageView)
 
-        root.setOnClickListener { clickListener(movie) }
+        sliderRoot.setOnClickListener { clickListener(movie) }
 
         //add container to root view
         container.addView(root)

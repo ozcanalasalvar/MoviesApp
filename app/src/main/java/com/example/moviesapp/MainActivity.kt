@@ -25,12 +25,15 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             networkMonitor.isOnline.collectLatest { connected ->
                 if (!connected)
-                    findViewById<FrameLayout>(R.id.container).showFailurePopup(getString(R.string.network_error))
+                    showConnectionPopup()
             }
 
         }
     }
 
+    private fun showConnectionPopup() {
+        findViewById<FrameLayout>(R.id.container).showFailurePopup(getString(R.string.network_error))
+    }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)

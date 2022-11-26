@@ -4,15 +4,20 @@ import com.example.moviesapp.data.MovieRepository
 import com.example.moviesapp.data.MovieRepositoryImpl
 import com.example.moviesapp.util.ConnectivityManagerNetworkMonitor
 import com.example.moviesapp.util.NetworkMonitor
+import com.example.moviesapp.util.TestNetworkMonitor
 import dagger.Binds
 import dagger.Module
-import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
 
+
 @Module
-@InstallIn(SingletonComponent::class)
-interface DataModule {
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [DataModule::class]
+)
+interface TestDataModule {
 
     @Binds
     @Singleton
@@ -20,5 +25,6 @@ interface DataModule {
 
     @Binds
     @Singleton
-    fun bindNetworkMonitor(networkMonitor: ConnectivityManagerNetworkMonitor): NetworkMonitor
+    fun bindNetworkMonitor(networkMonitor: TestNetworkMonitor): NetworkMonitor
+
 }

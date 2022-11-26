@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.moviesapp.adapters.CastingAdapter
 import com.example.moviesapp.data.MovieDetail
 import com.example.moviesapp.databinding.MovieDetailScreenLayoutBinding
-import com.example.moviesapp.databinding.MoviesScreenLayoutBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,7 +47,7 @@ class MovieDetailScreen : Fragment() {
         binding.rvCasts.adapter = adapter
 
         binding.ivBack.setOnClickListener {
-            findNavController().popBackStack()
+            requireView().findNavController().popBackStack()
         }
 
         return binding.root
