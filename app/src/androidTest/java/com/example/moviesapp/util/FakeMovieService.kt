@@ -57,6 +57,10 @@ object FakeMovieService : MovieService {
     }
 
     override suspend fun getMovieDetail(movieId: Int): MovieDetailDto {
+
+        if (shouldReturnError)
+            throw RuntimeException("Test Exception")
+
         return MovieDetailDto(
             adult = false,
             backdrop_path = "backDrop",

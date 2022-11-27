@@ -9,9 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.moviesapp.R
 import com.example.moviesapp.adapters.CastingAdapter
 import com.example.moviesapp.data.MovieDetail
 import com.example.moviesapp.databinding.MovieDetailScreenLayoutBinding
+import com.example.moviesapp.util.showFailurePopup
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -57,7 +59,7 @@ class MovieDetailScreen : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is MovieDetailUIState.Error -> {
-
+                    requireView().showFailurePopup(state.message)
                 }
                 MovieDetailUIState.Loading -> {
 
