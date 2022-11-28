@@ -45,7 +45,7 @@ class MoviesViewModel @Inject constructor(private val repository: MovieRepositor
     fun getTrendMovies() = viewModelScope.launch {
         when (val result = repository.getTrendMovies()) {
             is Resource.Error -> _error.value = result.exception.message
-            is Resource.Success -> _movies.value = result.data
+            is Resource.Success -> _movies.value = result.data ?: listOf()
         }
     }
 

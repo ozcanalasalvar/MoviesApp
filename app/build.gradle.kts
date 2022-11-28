@@ -9,20 +9,18 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.example.moviesapp"
-        minSdk = 21
-        targetSdk = 31
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
         buildConfigField("String", "API_KEY", getApiKey())
 
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.example.moviesapp.HiltTestRunner"
-        signingConfig = signingConfigs.getByName("debug")
     }
 
     buildFeatures {
@@ -32,96 +30,89 @@ android {
     buildTypes {
         debug {
             isDebuggable = true
+            applicationIdSuffix = ".debug"
         }
         release {
             isDebuggable = false
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+
+            // To publish on the Play store a private signing key is required, but to allow anyone
+            // who clones the code to sign and run the release variant, use the debug signing key.
+            // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    packagingOptions {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        }
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 }
 
 dependencies {
-    val lifeCycleExtensionVersion = "1.1.1"
-    val supportVersion = "28.0.0"
-    val retrofitVersion = "2.9.0"
-    val okHttpLogging = "4.9.3"
-    val glideVersion = "4.12.0"
-    val rxJavaVersion = "2.1.1"
-    val navVersion = "2.2.2"
-    val preferencesVersion = "1.1.1"
-    val paging_version = "3.1.1" //current version at the tim"
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.android.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    implementation(libs.rxjava)
+    implementation(libs.rxjava.rxandroid)
+
+    //Restfull
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.adapter)
+    implementation(libs.okhttp3.logging.interceptor)
+    implementation(libs.retrofit2.moshi.converter)
 
 
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    //Glide
+    implementation(libs.glide)
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    //Navigation component
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
+    //Hilt DI
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
-    implementation("com.squareup.okhttp3:logging-interceptor:$okHttpLogging")
-    implementation("com.squareup.retrofit2:converter-moshi:2.6.2")
-
-    implementation("io.reactivex.rxjava2:rxjava:$rxJavaVersion")
-    implementation("io.reactivex.rxjava2:rxandroid:$rxJavaVersion")
-
-    implementation("com.github.bumptech.glide:glide:$glideVersion")
-
-
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
-
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
-
-
-    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
-
+    //Paging3
+    implementation(libs.androidx.paging.runtime.ktx)
 
     // Timber
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation(libs.timber)
 
     // Local Unit Tests
-    implementation("androidx.test:core:1.5.0")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.hamcrest:hamcrest-all:1.3")
-    testImplementation("com.google.truth:truth:1.1.3")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1")
-    testImplementation("org.mockito:mockito-core:3.9.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.2.1")
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.junit4)
+    testImplementation(libs.truth)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.hamcrest.all)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.okhttp3.mockwebserver)
 
     // Instrumented Unit Tests
-    androidTestImplementation("junit:junit:4.13.2")
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1")
-    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
-    androidTestImplementation("com.google.truth:truth:1.1.3")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
-    androidTestImplementation("org.mockito:mockito-core:3.9.0")
-    androidTestImplementation("org.mockito:mockito-android:3.2.4")
-    // androidTestImplementation "org.robolectric:robolectric:4.3.1"
-    androidTestImplementation("com.google.ar:core:1.25.0")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.0")
-    androidTestImplementation("androidx.navigation:navigation-testing:2.5.3")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
-
-    debugImplementation("androidx.fragment:fragment-testing:1.5.4")
+    androidTestImplementation(libs.mockito.core)
+    androidTestImplementation(libs.junit4)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.mockito.android)
+    androidTestImplementation(libs.robolectric)
+    androidTestImplementation(libs.androidx.test.espresso.contrib)
+    androidTestImplementation(libs.google.ar.core)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
+    debugImplementation(libs.androidx.fragment.testing)
 
 
 }
