@@ -15,14 +15,11 @@ jobs:
           APOD_API_KEY: $
         run: echo API_KEY=\"$API_KEY\" > ./local.properties
 
-      - uses: actions/cache@v2
+      - uses: actions/setup-java@v2
           with:
-            path: |
-              ~/.gradle/caches
-              ~/.gradle/wrapper
-            key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-            restore-keys: |
-              ${{ runner.os }}-gradle-
+            distribution: temurin
+            java-version: 17
+            cache: gradle
 
       - name: set up JDK 11
         uses: actions/setup-java@v1
