@@ -1,0 +1,91 @@
+[versions]
+coreKtx = "1.6.0"
+retrofit = "2.9.0"
+okHttpLogging = "4.9.3"
+moshi = "2.6.2"
+androidxAppcompat = "1.3.1"
+materialVers = "1.4.0"
+androidxConstraintlayout = "2.1.4"
+androidxLifecycleVm = "2.5.1"
+rxJava = "2.1.1"
+glide = "4.12.0"
+androidxNavigation = "2.5.3"
+daggerHilt = "2.44"
+androidxPagingRuntime = "3.1.1"
+androidXTestCore = "1.5.0"
+junit4 = "4.13.2"
+hamcrestAll = "1.3"
+turth = "1.1.3"
+androidXCoreTesting = "2.1.0"
+kotlinxCoroutinesTest = "1.6.1"
+mockitoCore = "3.9.0"
+mockitoKotlin = "3.2.0"
+androidXTestJunit = "1.1.4"
+androidXEspresso = "3.5.0"
+mockitoAndroid = "3.2.4"
+roboelectric = "4.9"
+googleErCore = "1.25.0"
+navigationTesting = "2.5.3"
+hiltAndroidTesting = "2.38.1"
+fragmentTesting = "1.5.4"
+mockServer = "4.2.1"
+timber = "4.7.1"
+# @keep
+compileSdk = "31"
+minSdk = "21"
+targetSdk = "31"
+# @keep dependencies of the included build-logic versions
+gradle = "7.0.4"
+kotlin = "1.6.10"
+navigationSafeArgs = "2.4.0-alpha02"
+hiltAndroidGradlePlugin = "2.41"
+
+
+[libraries]
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+retrofit2-adapter = { group = "com.squareup.retrofit2", name = "adapter-rxjava2", version.ref = "retrofit" }
+retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpLogging" }
+retrofit2-moshi-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "moshi" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppcompat" }
+android-material = { group = "com.google.android.material", name = "material", version.ref = "materialVers" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidxConstraintlayout" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidxLifecycleVm" }
+rxjava = { group = "io.reactivex.rxjava2", name = "rxjava", version.ref = "rxJava" }
+rxjava-rxandroid = { group = "io.reactivex.rxjava2", name = "rxandroid", version.ref = "rxJava" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidxNavigation" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidxNavigation" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHilt" }
+androidx-paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "androidxPagingRuntime" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidXTestCore" }
+junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+hamcrest-all = { group = "org.hamcrest", name = "hamcrest-all", version.ref = "hamcrestAll" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "turth" }
+androidx-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidXCoreTesting" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockitoCore" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
+okhttp3-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "mockServer" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidXTestJunit" }
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidXEspresso" }
+androidx-test-espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "androidXEspresso" }
+mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockitoAndroid" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "roboelectric" }
+google-ar-core = { group = "com.google.ar", name = "core", version.ref = "googleErCore" }
+androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigationTesting" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hiltAndroidTesting" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroidTesting" }
+androidx-fragment-testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragmentTesting" }
+
+# Dependencies of the included build-logic
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgs" }
+hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hiltAndroidGradlePlugin" }
+
+
+#[bundles]
+#coroutines = ["coroutines-android", "coroutines-core"]
