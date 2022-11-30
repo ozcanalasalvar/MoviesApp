@@ -18,7 +18,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String", "API_KEY", getApiKey())
+        buildConfigField("String", "API_KEY", getApiKey() ?: "")
 
         testInstrumentationRunner = "com.example.moviesapp.HiltTestRunner"
     }
@@ -122,6 +122,6 @@ kapt {
 }
 
 
-fun getApiKey(): String {
-    return gradleLocalProperties(rootDir).get("api.key") as String
+fun getApiKey(): String? {
+    return gradleLocalProperties(rootDir).get("API_KEY") as String?
 }
