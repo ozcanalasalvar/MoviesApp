@@ -9,7 +9,6 @@ import com.example.moviesapp.ui.base.BaseActivity
 import javax.inject.Inject
 
 
-
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     @Inject
