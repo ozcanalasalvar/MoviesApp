@@ -123,5 +123,5 @@ kapt {
 
 
 fun getApiKey(): String? {
-    return gradleLocalProperties(rootDir).get("api.key") as String?
+    return gradleLocalProperties(rootDir).get("API_KEY") as String?
 }
