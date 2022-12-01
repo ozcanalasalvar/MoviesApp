@@ -87,12 +87,12 @@ dependencies {
     implementation(libs.timber)
 
     // Local Unit Tests
+    implementation(libs.androidx.test.core)
     testImplementation(libs.mockito.core)
     testImplementation(libs.junit4)
     testImplementation(libs.truth)
     testImplementation(libs.androidx.core.testing)
     testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.androidx.test.core)
     testImplementation(libs.hamcrest.all)
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.okhttp3.mockwebserver)
@@ -106,7 +106,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.mockito.android)
-    androidTestImplementation(libs.robolectric)
+    //androidTestImplementation(libs.robolectric)
     androidTestImplementation(libs.androidx.test.espresso.contrib)
     androidTestImplementation(libs.google.ar.core)
     androidTestImplementation(libs.androidx.navigation.testing)
