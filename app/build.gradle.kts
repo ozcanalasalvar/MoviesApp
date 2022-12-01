@@ -12,7 +12,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.example.moviesapp"
+        applicationId = "com.ozcanalasalvar.moviesapp"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
@@ -20,7 +20,7 @@ android {
 
         buildConfigField("String", "API_KEY", getApiKey() ?: "")
 
-        testInstrumentationRunner = "com.example.moviesapp.HiltTestRunner"
+        testInstrumentationRunner = "com.ozcanalasalvar.moviesapp.HiltTestRunner"
     }
 
     buildFeatures {
