@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/moviesScreen"
-        android:name="com.ozcanalasalvar.moviesapp.movies.MoviesScreen"
+        android:name="com.ozcanalasalvar.moviesapp.presentation.movies.MoviesScreen"
         android:label="MoviesScreen">
         <action
             android:id="@+id/action_moviesScreen_to_movieDetailScreen"
@@ -19,6 +19,6 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailScreen"
-        android:name="com.ozcanalasalvar.moviesapp.moviedetail.MovieDetailScreen"
+        android:name="com.ozcanalasalvar.moviesapp.presentation.moviedetail.MovieDetailScreen"
         android:label="MovieDetailScreen" />
 </navigation>

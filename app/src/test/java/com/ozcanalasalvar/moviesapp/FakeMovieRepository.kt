@@ -2,15 +2,15 @@ package com.ozcanalasalvar.moviesapp
 
 import androidx.annotation.VisibleForTesting
 import androidx.paging.PagingData
-import com.ozcanalasalvar.moviesapp.data.Movie
-import com.ozcanalasalvar.moviesapp.data.MovieDetail
-import com.ozcanalasalvar.moviesapp.data.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
+import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
+import com.ozcanalasalvar.moviesapp.domain.repository.MovieRepository
 import com.ozcanalasalvar.moviesapp.data.mapper.toMovie
 import com.ozcanalasalvar.moviesapp.data.mapper.toMovieDetail
 import com.ozcanalasalvar.moviesapp.data.model.detail.Genre
 import com.ozcanalasalvar.moviesapp.data.model.detail.MovieDetailDto
 import com.ozcanalasalvar.moviesapp.data.model.list.MovieResponse
-import com.ozcanalasalvar.moviesapp.data.util.Resource
+import com.ozcanalasalvar.moviesapp.domain.util.Resource
 import com.ozcanalasalvar.moviesapp.util.TestData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

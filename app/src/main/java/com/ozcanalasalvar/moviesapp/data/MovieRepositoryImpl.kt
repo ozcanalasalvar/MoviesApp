@@ -10,10 +10,13 @@ import com.ozcanalasalvar.moviesapp.data.model.cast.CastingResponse
 import com.ozcanalasalvar.moviesapp.data.model.detail.MovieDetailDto
 import com.ozcanalasalvar.moviesapp.data.source.remote.MovieService
 import com.ozcanalasalvar.moviesapp.data.source.remote.NowPlayingMoviesPagingSource
-import com.ozcanalasalvar.moviesapp.data.util.NETWORK_PAGE_SIZE
-import com.ozcanalasalvar.moviesapp.data.util.Resource
-import com.ozcanalasalvar.moviesapp.data.util.isSuccess
+import com.ozcanalasalvar.moviesapp.domain.util.NETWORK_PAGE_SIZE
+import com.ozcanalasalvar.moviesapp.domain.util.Resource
+import com.ozcanalasalvar.moviesapp.domain.util.isSuccess
 import com.ozcanalasalvar.moviesapp.di.IoDispatcher
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
+import com.ozcanalasalvar.moviesapp.domain.repository.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.lang.Exception

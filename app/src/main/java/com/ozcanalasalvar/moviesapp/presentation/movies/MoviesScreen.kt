@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.movies
+package com.ozcanalasalvar.moviesapp.presentation.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ozcanalasalvar.moviesapp.adapters.MoviePagerAdapter
-import com.ozcanalasalvar.moviesapp.adapters.MovieSliderAdapter
-import com.ozcanalasalvar.moviesapp.data.Movie
+import com.ozcanalasalvar.moviesapp.presentation.adapters.MoviePagerAdapter
+import com.ozcanalasalvar.moviesapp.presentation.adapters.MovieSliderAdapter
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
 import com.ozcanalasalvar.moviesapp.databinding.MoviesScreenLayoutBinding
 import com.ozcanalasalvar.moviesapp.util.showFailurePopup
 import dagger.hilt.android.AndroidEntryPoint

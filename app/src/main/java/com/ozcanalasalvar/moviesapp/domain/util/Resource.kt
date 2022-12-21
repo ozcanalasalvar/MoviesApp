@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.data.util
+package com.ozcanalasalvar.moviesapp.domain.util
 
 sealed class Resource<out R> {
 

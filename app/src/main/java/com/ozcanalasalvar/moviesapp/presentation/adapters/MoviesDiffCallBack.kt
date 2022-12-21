@@ -1,7 +1,7 @@
-package com.ozcanalasalvar.moviesapp.adapters
+package com.ozcanalasalvar.moviesapp.presentation.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.ozcanalasalvar.moviesapp.data.Movie
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
 
 
 class MoviesDiffCallBack : DiffUtil.ItemCallback<Movie>() {

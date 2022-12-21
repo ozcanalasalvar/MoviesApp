@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.data
+package com.ozcanalasalvar.moviesapp.domain.model
 
 data class MovieDetail(
     val id: Int,

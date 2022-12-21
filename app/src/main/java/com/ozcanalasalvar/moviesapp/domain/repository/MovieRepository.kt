@@ -1,7 +1,9 @@
-package com.ozcanalasalvar.moviesapp.data
+package com.ozcanalasalvar.moviesapp.domain.repository
 
 import androidx.paging.PagingData
-import com.ozcanalasalvar.moviesapp.data.util.Resource
+import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
+import com.ozcanalasalvar.moviesapp.domain.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {

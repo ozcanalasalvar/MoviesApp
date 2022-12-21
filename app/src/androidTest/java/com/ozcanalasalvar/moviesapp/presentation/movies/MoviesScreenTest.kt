@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.movies
+package com.ozcanalasalvar.moviesapp.presentation.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.navigation.NavController
@@ -16,6 +16,7 @@ import com.ozcanalasalvar.moviesapp.util.FakeMovieService
 import com.ozcanalasalvar.moviesapp.R
 import com.ozcanalasalvar.moviesapp.launchFragmentInHiltContainer
 import com.google.common.truth.Truth.assertThat
+import com.ozcanalasalvar.moviesapp.presentation.movies.MoviesScreen
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
