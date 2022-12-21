@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
-import com.ozcanalasalvar.moviesapp.domain.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.repository.MovieRepository
 import com.ozcanalasalvar.moviesapp.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest

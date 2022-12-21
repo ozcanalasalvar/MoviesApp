@@ -4,7 +4,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.paging.PagingData
 import com.ozcanalasalvar.moviesapp.domain.model.Movie
 import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
-import com.ozcanalasalvar.moviesapp.domain.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.repository.MovieRepository
 import com.ozcanalasalvar.moviesapp.data.mapper.toMovie
 import com.ozcanalasalvar.moviesapp.data.mapper.toMovieDetail
 import com.ozcanalasalvar.moviesapp.data.model.detail.Genre

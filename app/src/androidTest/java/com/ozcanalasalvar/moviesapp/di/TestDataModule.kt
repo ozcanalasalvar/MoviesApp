@@ -1,6 +1,6 @@
 package com.ozcanalasalvar.moviesapp.di
 
-import com.ozcanalasalvar.moviesapp.domain.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.repository.MovieRepository
 import com.ozcanalasalvar.moviesapp.data.MovieRepositoryImpl
 import com.ozcanalasalvar.moviesapp.util.NetworkMonitor
 import com.ozcanalasalvar.moviesapp.util.TestNetworkMonitor

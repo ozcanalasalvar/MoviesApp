@@ -9,7 +9,7 @@ import com.ozcanalasalvar.moviesapp.domain.util.isSuccess
 import com.ozcanalasalvar.moviesapp.util.MainCoroutineRule
 import com.ozcanalasalvar.moviesapp.util.TestData
 import com.google.common.truth.Truth.assertThat
-import com.ozcanalasalvar.moviesapp.domain.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.repository.MovieRepository
 import com.ozcanalasalvar.moviesapp.domain.model.Casting
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first

@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.domain
+package com.ozcanalasalvar.moviesapp.domain.repository
 
 import androidx.paging.PagingData
 import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail

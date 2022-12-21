@@ -15,7 +15,7 @@ import com.ozcanalasalvar.moviesapp.domain.util.Resource
 import com.ozcanalasalvar.moviesapp.domain.util.isSuccess
 import com.ozcanalasalvar.moviesapp.di.IoDispatcher
 import com.ozcanalasalvar.moviesapp.domain.model.Movie
-import com.ozcanalasalvar.moviesapp.domain.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.repository.MovieRepository
 import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
