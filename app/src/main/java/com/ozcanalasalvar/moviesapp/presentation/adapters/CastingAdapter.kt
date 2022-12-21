@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.adapters
+package com.ozcanalasalvar.moviesapp.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ozcanalasalvar.moviesapp.data.Casting
+import com.ozcanalasalvar.moviesapp.domain.model.Casting
 import com.ozcanalasalvar.moviesapp.databinding.CastingListItemCellBinding
 
 class CastingAdapter : ListAdapter<Casting, RecyclerView.ViewHolder>(CastingDiffCallBack()) {

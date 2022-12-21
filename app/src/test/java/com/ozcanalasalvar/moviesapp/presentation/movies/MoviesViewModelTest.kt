@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.movies
+package com.ozcanalasalvar.moviesapp.presentation.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ozcanalasalvar.moviesapp.FakeMovieRepository
@@ -7,6 +7,7 @@ import com.ozcanalasalvar.moviesapp.util.MainCoroutineRule
 import com.ozcanalasalvar.moviesapp.util.TestData
 import com.ozcanalasalvar.moviesapp.util.getOrAwaitValueTest
 import com.google.common.truth.Truth.assertThat
+import com.ozcanalasalvar.moviesapp.presentation.movies.MoviesViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

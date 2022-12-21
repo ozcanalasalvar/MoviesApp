@@ -1,8 +1,8 @@
 package com.ozcanalasalvar.moviesapp.data.mapper
 
-import com.ozcanalasalvar.moviesapp.data.Casting
-import com.ozcanalasalvar.moviesapp.data.Movie
-import com.ozcanalasalvar.moviesapp.data.MovieDetail
+import com.ozcanalasalvar.moviesapp.domain.model.Casting
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
+import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
 import com.ozcanalasalvar.moviesapp.data.model.cast.CastingDto
 import com.ozcanalasalvar.moviesapp.data.model.detail.Genre
 import com.ozcanalasalvar.moviesapp.data.model.detail.MovieDetailDto

@@ -1,12 +1,12 @@
-package com.ozcanalasalvar.moviesapp.moviedetail
+package com.ozcanalasalvar.moviesapp.presentation.moviedetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ozcanalasalvar.moviesapp.data.MovieDetail
-import com.ozcanalasalvar.moviesapp.data.MovieRepository
-import com.ozcanalasalvar.moviesapp.data.util.Resource
+import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
+import com.ozcanalasalvar.moviesapp.domain.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

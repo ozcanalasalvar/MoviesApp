@@ -1,10 +1,11 @@
-package com.ozcanalasalvar.moviesapp
+package com.ozcanalasalvar.moviesapp.presentation
 
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.ozcanalasalvar.moviesapp.R
 import com.ozcanalasalvar.moviesapp.util.NetworkMonitor
 import com.ozcanalasalvar.moviesapp.util.showFailurePopup
 import dagger.hilt.android.AndroidEntryPoint

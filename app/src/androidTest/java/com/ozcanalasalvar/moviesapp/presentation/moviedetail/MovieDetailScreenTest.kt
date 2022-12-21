@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.moviedetail
+package com.ozcanalasalvar.moviesapp.presentation.moviedetail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.core.os.bundleOf
@@ -20,6 +20,7 @@ import org.junit.Before
 import org.junit.Rule
 import com.ozcanalasalvar.moviesapp.R
 import com.google.common.truth.Truth
+import com.ozcanalasalvar.moviesapp.presentation.moviedetail.MovieDetailScreen
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock

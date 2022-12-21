@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.adapters
+package com.ozcanalasalvar.moviesapp.presentation.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import com.ozcanalasalvar.moviesapp.R
-import com.ozcanalasalvar.moviesapp.data.Movie
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
 
 class MovieSliderAdapter(
     private var movies: ArrayList<Movie>,

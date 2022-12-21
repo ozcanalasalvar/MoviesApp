@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.moviesapp.movies
+package com.ozcanalasalvar.moviesapp.presentation.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.ozcanalasalvar.moviesapp.data.Movie
-import com.ozcanalasalvar.moviesapp.data.MovieRepository
-import com.ozcanalasalvar.moviesapp.data.util.Resource
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
+import com.ozcanalasalvar.moviesapp.domain.MovieRepository
+import com.ozcanalasalvar.moviesapp.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch

@@ -1,11 +1,11 @@
-package com.ozcanalasalvar.moviesapp.adapters
+package com.ozcanalasalvar.moviesapp.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ozcanalasalvar.moviesapp.data.Movie
+import com.ozcanalasalvar.moviesapp.domain.model.Movie
 import com.ozcanalasalvar.moviesapp.databinding.MovieListItemCellBinding
 
 data class MovieClickListener(val clickListener: (movie: Movie) -> Unit)

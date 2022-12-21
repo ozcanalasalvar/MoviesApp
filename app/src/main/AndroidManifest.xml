@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/FullscreenTheme">
         <activity
-            android:name="com.ozcanalasalvar.moviesapp.MainActivity"
+            android:name="com.ozcanalasalvar.moviesapp.presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
 
