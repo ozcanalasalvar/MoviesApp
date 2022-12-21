@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.android.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation(libs.rxjava)
     implementation(libs.rxjava.rxandroid)
@@ -67,6 +68,19 @@ dependencies {
     implementation(libs.retrofit2.adapter)
     implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.retrofit2.moshi.converter)
+
+
+    //Compose
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.activity.compose)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.util)
+    implementation(libs.com.google.accompanist.pager)
+    implementation(libs.com.google.accompanist.pager.indicators)
+    implementation(libs.glide.compose)
+    implementation(libs.androidx.constraintlayout.compose)
 
 
     //Glide
@@ -113,6 +127,8 @@ dependencies {
     androidTestImplementation(libs.hilt.android.testing)
     kaptAndroidTest(libs.hilt.android.compiler)
     debugImplementation(libs.androidx.fragment.testing)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
 
 }

@@ -40,6 +40,15 @@ kotlin = "1.6.10"
 navigationSafeArgs = "2.4.0-alpha02"
 hiltAndroidGradlePlugin = "2.41"
 
+#Compose Versions
+compose = "1.3.2"
+composeMaterial="1.4.0-alpha03"
+runtimeKtx="2.5.1"
+activityCompose="1.6.1"
+accompanistPager="0.23.1"
+glideCompose="1.0.0-alpha.1"
+constraintlayoutCompose="1.0.1"
+
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -51,6 +60,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 android-material = { group = "com.google.android.material", name = "material", version.ref = "materialVers" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidxConstraintlayout" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidxLifecycleVm" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycleVm" }
 rxjava = { group = "io.reactivex.rxjava2", name = "rxjava", version.ref = "rxJava" }
 rxjava-rxandroid = { group = "io.reactivex.rxjava2", name = "rxandroid", version.ref = "rxJava" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
@@ -79,6 +89,20 @@ androidx-navigation-testing = { group = "androidx.navigation", name = "navigatio
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hiltAndroidTesting" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroidTesting" }
 androidx-fragment-testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragmentTesting" }
+
+#Compose
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "composeMaterial" }
+androidx-compose-uitooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "compose" }
+androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "compose" }
+com-google-accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanistPager" }
+com-google-accompanist-pager-indicators = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref = "accompanistPager" }
+glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glideCompose" }
+androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 
 # Dependencies of the included build-logic
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
