@@ -25,6 +25,12 @@ android {
 
     buildFeatures {
         dataBinding = true
+        compose = true
+    }
+
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
 
     buildTypes {
@@ -81,6 +87,8 @@ dependencies {
     implementation(libs.com.google.accompanist.pager.indicators)
     implementation(libs.glide.compose)
     implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.compose.runtime)
 
 
     //Glide
