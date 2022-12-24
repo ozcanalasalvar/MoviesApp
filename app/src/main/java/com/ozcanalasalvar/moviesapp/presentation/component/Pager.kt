@@ -20,7 +20,8 @@ import com.ozcanalasalvar.moviesapp.domain.model.Movie
 fun MoviePager(
     sliderMovies: List<Movie>?,
     pagerState: PagerState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: (Movie) -> Unit
 ) {
     Box(modifier = modifier.fillMaxWidth()) {
 
@@ -32,7 +33,9 @@ fun MoviePager(
             count = 5,
         ) { page ->
             sliderMovies?.get(page)?.let {
-                MoviePagerCard(movie = it)
+                MoviePagerCard(movie = it, onClick = { movie ->
+                    onClick(movie)
+                })
             }
         }
 

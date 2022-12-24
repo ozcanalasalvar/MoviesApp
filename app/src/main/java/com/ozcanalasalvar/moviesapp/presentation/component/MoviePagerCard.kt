@@ -1,5 +1,6 @@
 package com.ozcanalasalvar.moviesapp.presentation.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,8 +19,10 @@ import com.ozcanalasalvar.moviesapp.domain.model.Movie
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun MoviePagerCard(movie: Movie) {
-    Box(modifier = Modifier.fillMaxSize()) {
+fun MoviePagerCard(movie: Movie, onClick: (Movie) -> Unit) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .clickable { onClick(movie) }) {
 
         GlideImage(
             movie.image,

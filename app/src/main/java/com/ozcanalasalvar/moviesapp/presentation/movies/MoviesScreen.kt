@@ -49,7 +49,12 @@ class MoviesScreen : Fragment() {
                         .fillMaxSize()
                 ) {
                     item {
-                        MoviePager(sliderMovies = sliderMovies, pagerState = pagerState)
+                        MoviePager(
+                            sliderMovies = sliderMovies,
+                            pagerState = pagerState,
+                            onClick = { movie ->
+                                navigateDetail(movie)
+                            })
                     }
 
 
