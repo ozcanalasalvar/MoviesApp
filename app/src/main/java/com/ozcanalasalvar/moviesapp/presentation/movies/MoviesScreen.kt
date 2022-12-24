@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -42,6 +43,7 @@ class MoviesScreen : Fragment() {
             setContent {
                 val pagingFilms = viewModel.pagingDataFlow!!.collectAsLazyPagingItems()
                 val pagerState = rememberPagerState()
+                val lazyState = rememberLazyListState()
                 val sliderMovies by viewModel.movies.observeAsState()
 
                 LazyColumn(
