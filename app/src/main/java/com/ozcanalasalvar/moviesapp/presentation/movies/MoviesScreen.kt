@@ -43,7 +43,6 @@ class MoviesScreen : Fragment() {
             setContent {
                 val pagingFilms = viewModel.pagingDataFlow!!.collectAsLazyPagingItems()
                 val pagerState = rememberPagerState()
-                val lazyState = rememberLazyListState()
                 val sliderMovies by viewModel.movies.observeAsState()
 
                 LazyColumn(
