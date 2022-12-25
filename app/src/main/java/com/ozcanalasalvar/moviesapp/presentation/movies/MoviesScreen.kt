@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.testTag
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -25,6 +26,8 @@ import com.ozcanalasalvar.moviesapp.presentation.component.MovieCard
 import com.ozcanalasalvar.moviesapp.presentation.component.MoviePager
 import com.ozcanalasalvar.moviesapp.util.showFailurePopup
 import dagger.hilt.android.AndroidEntryPoint
+
+const val MOVIE_LIST_TEST_TAG = "movie_list_test_tag"
 
 @AndroidEntryPoint
 class MoviesScreen : Fragment() {
@@ -48,6 +51,7 @@ class MoviesScreen : Fragment() {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
+                        .testTag(MOVIE_LIST_TEST_TAG)
                 ) {
                     item {
                         MoviePager(

@@ -13,7 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.ozcanalasalvar.moviesapp.presentation.component.Detail
+import com.ozcanalasalvar.moviesapp.util.showFailurePopup
 import dagger.hilt.android.AndroidEntryPoint
+
+const val DETAIL_BACK_TEST_TAG = "detail_back_test_tag"
 
 @AndroidEntryPoint
 class MovieDetailScreen : Fragment() {
@@ -36,7 +39,7 @@ class MovieDetailScreen : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 val uiState by viewModel.uiState.observeAsState()
-                if (uiState is MovieDetailUIState.Success)
+                if (uiState is MovieDetailUIState.Success) {
                     Detail(
                         modifier = Modifier.fillMaxSize(),
                         detail = (uiState as MovieDetailUIState.Success).data,
@@ -44,6 +47,12 @@ class MovieDetailScreen : Fragment() {
                             requireView().findNavController().popBackStack()
                         },
                     )
+                }
+
+                if (uiState is MovieDetailUIState.Error) {
+                    view?.showFailurePopup((uiState as MovieDetailUIState.Error).message)
+                }
+
             }
         }
 

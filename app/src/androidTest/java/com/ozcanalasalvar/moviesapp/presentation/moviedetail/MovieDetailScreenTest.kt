@@ -1,12 +1,12 @@
 package com.ozcanalasalvar.moviesapp.presentation.moviedetail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.compose.ui.test.*
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -18,9 +18,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
-import com.ozcanalasalvar.moviesapp.R
-import com.google.common.truth.Truth
-import com.ozcanalasalvar.moviesapp.presentation.moviedetail.MovieDetailScreen
+import com.ozcanalasalvar.moviesapp.presentation.MainActivity
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
@@ -38,6 +36,9 @@ class MovieDetailScreenTest {
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    @get:Rule
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
+
     @Before
     fun setUp() {
         FakeMovieService.shouldThrowException(false)
@@ -48,11 +49,12 @@ class MovieDetailScreenTest {
     fun pressBackButton_popBackStack() {
         val navController = mock(NavController::class.java)
 
-        launchFragmentInHiltContainer<MovieDetailScreen>() {
+        launchFragmentInHiltContainer<MovieDetailScreen>(fragmentArgs = bundleOf("movieId" to 0)) {
             Navigation.setViewNavController(requireView(), navController)
         }
 
-        onView(withId(R.id.iv_back)).perform(click())
+        val backImage = composeTestRule.onNode(hasTestTag(DETAIL_BACK_TEST_TAG), true)
+        backImage.performClick()
         //pressBack()
 
         verify(navController).popBackStack()
@@ -62,17 +64,8 @@ class MovieDetailScreenTest {
     fun display_movieDetail_success() {
         launchFragmentInHiltContainer<MovieDetailScreen>(fragmentArgs = bundleOf("movieId" to 0))
 
-        onView(withId(R.id.tv_movie_title)).check(matches(withText("title")))
-        onView(withId(R.id.tvOverview)).check(matches(withText("movie overview")))
-
-        onView(withId(R.id.rvCasts)).check { view, noViewFoundException ->
-            if (noViewFoundException != null) {
-                throw noViewFoundException
-            }
-
-            val recyclerView = view as RecyclerView
-            Truth.assertThat(recyclerView.adapter?.itemCount).isGreaterThan(0)
-        }
+        composeTestRule.onNodeWithText("title")
+        composeTestRule.onNodeWithText("movie overview")
     }
 
 

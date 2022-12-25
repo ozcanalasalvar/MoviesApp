@@ -1,26 +1,21 @@
 package com.ozcanalasalvar.moviesapp.presentation.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.compose.ui.test.*
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ozcanalasalvar.moviesapp.util.FakeMovieService
-import com.ozcanalasalvar.moviesapp.R
 import com.ozcanalasalvar.moviesapp.launchFragmentInHiltContainer
-import com.google.common.truth.Truth.assertThat
-import com.ozcanalasalvar.moviesapp.presentation.movies.MoviesScreen
+import com.ozcanalasalvar.moviesapp.presentation.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.hamcrest.Matchers.allOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -39,6 +34,9 @@ class MoviesScreenTest {
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    @get:Rule
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
+
     @Before
     fun setUp() {
         FakeMovieService.shouldThrowException(false)
@@ -49,14 +47,9 @@ class MoviesScreenTest {
     fun display_movie_list_success() {
         launchFragmentInHiltContainer<MoviesScreen>()
 
-        onView(withId(R.id.rv_all_movies)).check { view, noViewFoundException ->
-            if (noViewFoundException != null) {
-                throw noViewFoundException
-            }
-
-            val recyclerView = view as RecyclerView
-            assertThat(recyclerView.adapter?.itemCount).isGreaterThan(0)
-        }
+        composeTestRule.onNodeWithTag(MOVIE_LIST_TEST_TAG)
+            .onChildren()[1]
+            .assert(hasText("title1"))
     }
 
     @Test
@@ -76,8 +69,8 @@ class MoviesScreenTest {
             Navigation.setViewNavController(requireView(), navController)
         }
 
-        onView(withId(R.id.rv_all_movies))
-            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        composeTestRule.onNodeWithTag(MOVIE_LIST_TEST_TAG)
+            .onChildren()[1].performClick()
 
         verify(navController).navigate(
             MoviesScreenDirections.actionMoviesScreenToMovieDetailScreen(1)
@@ -93,7 +86,7 @@ class MoviesScreenTest {
             Navigation.setViewNavController(requireView(), navController)
         }
 
-        onView(allOf(withId(R.id.sliderRoot), isDisplayed())).perform(click());
+        composeTestRule.onNodeWithTag(MOVIE_LIST_TEST_TAG).onChildren()[0].performClick()
 
         verify(navController).navigate(
             MoviesScreenDirections.actionMoviesScreenToMovieDetailScreen(1)

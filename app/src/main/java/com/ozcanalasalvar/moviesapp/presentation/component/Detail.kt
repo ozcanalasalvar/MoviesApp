@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -23,6 +24,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.ozcanalasalvar.moviesapp.R
 import com.ozcanalasalvar.moviesapp.domain.model.MovieDetail
+import com.ozcanalasalvar.moviesapp.presentation.moviedetail.DETAIL_BACK_TEST_TAG
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
@@ -176,6 +178,7 @@ fun Detail(detail: MovieDetail, modifier: Modifier = Modifier, onBAckPressed: ()
                 .clickable {
                     onBAckPressed()
                 }
+                .testTag(DETAIL_BACK_TEST_TAG)
         )
 
 
