@@ -12,6 +12,9 @@ Movie app that uses modern android components and MVVM architecture.
 
 <br>
 
+> **_NOTE:_** You can check [Compose](https://developer.android.com/jetpack/compose?gclid=CjwKCAiAhqCdBhB0EiwAH8M_GrMEjOEbwExgFLdJeDkdX78_DMaJ7G2tOnKxX5jO4l3SPqZF38oFkRoCyb8QAvD_BwE&gclsrc=aw.ds) implementation of app from [here](https://github.com/OzcanAlasalvar/MoviesApp/tree/compose-main)
+
+<br>
 
 ### Libraries
 
@@ -24,7 +27,6 @@ Movie app that uses modern android components and MVVM architecture.
 
 <br>
 
-> **_NOTE:_** You can check [Compose](https://developer.android.com/jetpack/compose?gclid=CjwKCAiAhqCdBhB0EiwAH8M_GrMEjOEbwExgFLdJeDkdX78_DMaJ7G2tOnKxX5jO4l3SPqZF38oFkRoCyb8QAvD_BwE&gclsrc=aw.ds) implementation of app from [here](https://github.com/OzcanAlasalvar/MoviesApp/tree/compose-main)
 
 
 ### API keys
